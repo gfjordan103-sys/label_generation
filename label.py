@@ -125,15 +125,14 @@ def generate_printing_page_labels(detail_wb, template_wb):
 # Streamlit UI
 # ==========================================
 st.set_page_config(page_title="印刷標籤自動排版系統", page_icon="🖨️")
-st.title("🖨️ 印刷標籤自動排版系統 (欄寬修正版)")
-st.write("已修正間隔欄(C, F, I)縮小跑版問題，完美保留原始範例 Excel 的所有寬度。")
+st.title("🖨️ 印刷標籤自動排版系統")
 
 file_detail = st.file_uploader("1. 上傳【出貨明細】(.xlsx)", type=["xlsx"], key="p_detail")
 file_template = st.file_uploader("2. 上傳【訂單號碼】標籤樣版 (.xlsx)", type=["xlsx"], key="p_template")
 
 if file_detail and file_template:
     st.success("📊 檔案已成功載入！")
-    if st.button("🚀 執行 20 欄 Cycle 印刷排版", type="primary"):
+    if st.button("🚀 執行印刷排版", type="primary"):
         with st.spinner("正在強制同步 C, F, I 等間隔欄寬..."):
             try:
                 wb_d = openpyxl.load_workbook(file_detail)
@@ -146,9 +145,9 @@ if file_detail and file_template:
                 
                 st.success("🎉 排版修正成功！間隔欄已恢復特製窄度，請點下方按鈕下載。")
                 st.download_button(
-                    label="📥 下載修正後的標籤 Excel",
+                    label="📥 下載標籤 Excel",
                     data=excel_buffer,
-                    file_name="修正後_印刷對位標籤結果.xlsx",
+                    file_name="印刷對位標籤結果.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 )
             except Exception as e:
