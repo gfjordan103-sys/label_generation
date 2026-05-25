@@ -155,7 +155,7 @@ if file_detail and file_template:
                 result_wb.save(excel_buffer)
                 excel_buffer.seek(0)
                 
-                st.success("🎉 排版成功！欄寬與列高已完美實現 Cycle 複製，錯誤已完全修復。")
+                st.success("🎉 排版成功！")
                 st.download_button(
                     label="📥 下載印刷對位標籤結果",
                     data=excel_buffer,
